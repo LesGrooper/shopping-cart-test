@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../models/cart.model';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -7,44 +6,22 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CartService {
 
-  data: Product[] = [
-    { id: 1,
-      name: 'Call Of Duty - 2019',
-      price: 4000,
-      qty: 1
-    },
-    { id: 2,
-      name: 'Spiderman - 2019',
-      price: 3000,
-      qty: 1
-    },
-    { id: 3,
-      name: 'Mortal Kombat 11 - 2019',
-      price: 4000,
-      qty: 1
-    }
-  ]
+  private cart: any[] = [];
+  private cartItemCount = new BehaviorSubject<number>(0);
 
-  private cart = []
-  private cartItemCount = new BehaviorSubject(0);
-  
-  
-  constructor() { }
+  constructor() {}
 
-  getProducts(){
-    return this.data;
-  }
-
-  getCart(){
+  getCart() {
     return this.cart;
   }
 
   getCartItemCount(): BehaviorSubject<number> {
-		return this.cartItemCount;
-	}
+    return this.cartItemCount;
+  }
 
   addProduct(product) {
     let added = false;
+
     for (let p of this.cart) {
       if (p.id === product.id) {
         p.qty += 1;
@@ -52,31 +29,56 @@ export class CartService {
         break;
       }
     }
+
     if (!added) {
-      product.qty = 1;
-      this.cart.push(product);
+      this.cart.push({
+        ...product,
+        qty: 1
+      });
     }
+
     this.cartItemCount.next(this.cartItemCount.value + 1);
   }
- 
+
   decreaseProduct(product) {
     for (const [index, item] of this.cart.entries()) {
-			if (item.id === product.id) {
-				item.qty -= 1;
-				if (item.qty === 0) {
-					this.cart.splice(index, 1);
-				}
-			}
-		}
-		this.cartItemCount.next(this.cartItemCount.value - 1);
+      if (item.id === product.id) {
+        item.qty -= 1;
+
+        if (item.qty === 0) {
+          this.cart.splice(index, 1);
+        }
+        break;
+      }
+    }
+
+    this.cartItemCount.next(this.cartItemCount.value - 1);
   }
- 
+
   removeProduct(product) {
     for (const [index, item] of this.cart.entries()) {
-			if (item.id === product.id) {
-				this.cartItemCount.next(this.cartItemCount.value - item.qty);
-				this.cart.splice(index, 1);
-			}
-		}
+      if (item.id === product.id) {
+        this.cartItemCount.next(
+          this.cartItemCount.value - item.qty
+        );
+        this.cart.splice(index, 1);
+        break;
+      }
+    }
+  }
+
+  getTotalItems(): number {
+    return this.cart.reduce((total, item) => total + item.qty, 0);
+  }
+
+  getTotalAmount(): number {
+    return this.cart.reduce((total, item) => {
+      return total + (item.price * item.qty);
+    }, 0);
+  }
+
+  clearCart() {
+    this.cart = [];
+    this.cartItemCount.next(0);
   }
 }

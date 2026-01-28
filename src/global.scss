@@ -24,3 +24,72 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+/* Success Alert Styling */
+.success-alert {
+  --width: 85%;
+  --border-radius: 14px;
+  --box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+
+  .alert-wrapper {
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .alert-head {
+    padding: 32px 24px 8px;
+    text-align: center;
+    border-bottom: none;
+  }
+
+  .alert-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #222428;
+    margin: 0;
+  }
+
+  .alert-message {
+    padding: 16px 24px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #666;
+
+    b {
+      font-weight: 700;
+      color: #222428;
+      display: block;
+      margin: 4px 0;
+    }
+  }
+
+  .alert-button-group {
+    padding: 16px 24px 32px;
+    margin: 0;
+    border-top: none;
+
+    .alert-button {
+      border-radius: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+
+      &.alert-button-main {
+        --background: transparent;
+        --text-color: #0066ff;
+        --box-shadow: none;
+        --border-radius: 8px;
+        color: #0066ff;
+      }
+    }
+  }
+}
+
+

@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,7 +17,9 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule, 
     HttpClientModule,
     IonicModule.forRoot(), 
-    AppRoutingModule],
+    AppRoutingModule,
+    FormsModule,
+  ],
   providers: [
     Stripe,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

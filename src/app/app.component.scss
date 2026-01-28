@@ -1,0 +1,51 @@
+/* App Component Styling */
+
+ion-app {
+  --ion-background-color: #f8f8f8;
+}
+
+/* Modal Styling */
+.cart-modal {
+  --height: 85vh;
+  --border-radius: 20px 20px 0 0;
+  --ion-modal-box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.15);
+  --backdrop-opacity: 0.4;
+}
+
+/* Toolbar Styling */
+ion-toolbar {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+}
+
+ion-toolbar ion-title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+/* General Button Styling */
+ion-button {
+  --border-radius: 6px;
+  --text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Card Styling */
+ion-card {
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --border-radius: 12px;
+}
+
+/* List Styling */
+ion-list {
+  --background: transparent;
+  padding: 0;
+}
+
+ion-item {
+  --border-bottom: none;
+  --background: transparent;
+}

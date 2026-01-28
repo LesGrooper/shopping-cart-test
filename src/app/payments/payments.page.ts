@@ -1,59 +1,53 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-
-
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-import { Stripe } from '@ionic-native/stripe/ngx';
-
-
-
+import { CartService } from '../_services/cart.service';
 
 @Component({
   selector: 'app-payments',
   templateUrl: './payments.page.html',
   styleUrls: ['./payments.page.scss'],
 })
-export class PaymentsPage implements OnInit {
+export class PaymentsPage {
 
-  cardinfo: any = {
+  cardinfo = {
     number: '',
     expMonth: '',
     expYear: '',
     cvc: ''
-  }
+  };
+  
+  constructor(
+    private alertCtrl: AlertController,
+    private cartService: CartService
+  ) { }
 
-  constructor(private stripe: Stripe,
-              private alertCtrl: AlertController,
-              public http: HttpClient) { }
+  async pay() {
+    const totalItems = this.cartService.getTotalItems();
+    const totalAmount = this.cartService.getTotalAmount();
 
-  ngOnInit() {
-  }
-
-  pay() {
-    this.stripe.setPublishableKey('pk_test_xxxxxxxxxxx');
-    this.stripe.createCardToken(this.cardinfo).then((token) => {
-
-     console.log(token);
-      
-     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-     let paydata = { stripeToken: token, amount: 1, description: 'test payment' };
-        
-
-     let url = 'https://yourserver-middleware/charge'; 
-
-      this.http.post(url, {headers: headers }).subscribe((res) => {
-        if (res){
-          const alert = this.alertCtrl.create({
-            header: 'Order Success',
-            message: 'We will deliver your order soon',
-            buttons: ['OK']
-          });
-          
+    const alert = await this.alertCtrl.create({
+      header: 'Success!',
+      message: `
+      You have successfully purchase <b>${totalItems} products</b><br><br>
+      with total of <b>Rp. ${totalAmount.toLocaleString('id-ID')}</b>.<br><br>
+      Click close to buy another modems
+    `,
+      buttons: [
+        {
+          text: 'Close',
+          handler: () => {
+            this.cartService.clearCart(); // 🔥 optional tapi cakep
+          }
         }
-      
-      })
-    })
+      ],
+      cssClass: 'success-alert'
+    });
+
+    await alert.present();
   }
 
+
+  formatCurrency(value: number) {
+    return value.toLocaleString('id-ID');
+  }
 }

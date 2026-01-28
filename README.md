@@ -37,16 +37,4 @@ npm install @ionic-native/stripe
 ionic cap sync
 ```
 
-## Stripe (Test) Key
-
-**/src/payments/payments.page.ts**
-
-```
-  this.stripe.setPublishableKey('pk_test_xxxxxxxxxxx');
-```
-
-## Preview 
-
-![Ionic 5 Angular Shopping Cart with Stripe payment](/screenshot/screenshot.png)
-
 

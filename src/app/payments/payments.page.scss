@@ -1,0 +1,56 @@
+ion-header {
+  ion-toolbar {
+    --color: #fff;
+  }
+}
+
+ion-content {
+  --background: #f8f8f8;
+}
+
+.ion-padding {
+  padding: 24px 16px;
+}
+
+ion-input {
+  --background: #fff;
+  --border-radius: 8px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  margin-bottom: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+
+  &::part(native) {
+    color: #222428;
+  }
+
+  &::placeholder {
+    color: #999;
+  }
+}
+
+ion-button[expand="full"][color="dark"] {
+  --background: #222428;
+  --color: #fff;
+  --border-radius: 8px;
+  margin-top: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  height: 48px;
+}
+
+ion-button[color="light"] {
+  --color: #fff;
+  font-weight: 600;
+  --background: transparent;
+}
+
+ion-button[size="small"] {
+  --padding-start: 8px;
+  --padding-end: 8px;
+}

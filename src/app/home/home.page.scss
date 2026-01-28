@@ -1,9 +1,8 @@
-
 ion-fab-button {
   height: 70px;
   width: 70px;
 }
- 
+
 .cart-icon {
   font-size: 50px;
 }
@@ -17,4 +16,78 @@ ion-fab-button {
   font-size: 1em;
   min-width: 25px;
   z-index: 10;
+}
+
+.cart-badge {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  flex: 1;
+  text-align: center;
+}
+
+ion-item {
+  margin: 8px 12px;
+
+  ion-label {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  ion-select {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 6px 10px;
+  }
+}
+
+ion-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 12px;
+  background: #fff;
+}
+
+ion-card-header {
+  padding: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+ion-card-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #222428;
+  margin: 0;
+}
+
+ion-card-content {
+  padding: 12px 16px;
+}
+
+ion-row {
+  align-items: center;
+}
+
+ion-label[color="secondary"] {
+  font-size: 16px;
+  font-weight: 700;
+  color: #3dc2ff;
+}
+
+ion-button[color="dark"] {
+  --background: #222428;
+  --color: #fff;
+  --border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+ion-skeleton-text {
+  border-radius: 8px;
+}
+
+ion-content {
+  --background: #f8f8f8;
 }
